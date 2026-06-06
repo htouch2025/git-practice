@@ -9,3 +9,5 @@ def timer(sec):
     os.system('say "计时结束"')
 
 timer(5)
+print('')
+ 
