@@ -5,13 +5,12 @@ import pygame
 
 class AlienInvasion:
     """管理游戏资源和行为的类"""
+
     def __init__(self):
-        """初始化游戏并创建游戏资源"""
+        """初始化游戏并创建游戏资源（窗口/画布）"""
         pygame.init()
         self.screen = pygame.display.set_mode((1200,800))
         pygame.display.set_caption('Alien Invasion')
-        #Cursor 添加：
-        self.bg_color = (50, 50, 50)
     
     def run_game(self):
         """开始游戏的主循环"""
@@ -20,17 +19,9 @@ class AlienInvasion:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit() 
-           
-             #Cursor 添加：
-            self.screen.fill(self.bg_color)
             
-             #让最近绘制的屏幕可见
+             #让最近绘制的屏幕可见(后台前置)
             pygame.display.flip()
-
-
-#last_g = list(globals().items())
-#for item in last_g:
-#    print(item)
 
 if __name__ == '__main__':
     #创建游戏实例并运行游戏
