@@ -1,7 +1,9 @@
-"""外星人入侵游戏主程序"""
+"""《外星人入侵》游戏主程序"""
 
 import sys
 import pygame
+
+from settings import Settings
 
 class AlienInvasion:
     """管理游戏资源和行为的类"""
@@ -9,7 +11,9 @@ class AlienInvasion:
     def __init__(self):
         """初始化游戏并创建游戏资源（窗口/画布）"""
         pygame.init()
-        self.screen = pygame.display.set_mode((1200,800))
+        self.clock = pygame.time.Clock()
+        self.settings = Settings()
+        self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_heigh))
         pygame.display.set_caption('Alien Invasion')
     
     def run_game(self):
@@ -20,9 +24,11 @@ class AlienInvasion:
                 if event.type == pygame.QUIT:
                     sys.exit() 
             
-             #让最近绘制的屏幕可见(后台前置)
+            #self.screen.fill(self.settings.bg_color)
+            #让最近绘制的屏幕可见(后台翻前)
             pygame.display.flip()
-
+            #控制帧率：如果当前循环时间短于 1/60 秒，则延时至1/60秒
+            self.clock.tick(60) 
 if __name__ == '__main__':
     #创建游戏实例并运行游戏
     ai = AlienInvasion()
