@@ -11,7 +11,7 @@ class Ship:
         self.image = pygame.image.load('images/ship.bmp')
         self.rect = self.image.get_rect()
 
-        #每艘新飞船都放在屏幕底部的中央
+        #每艘新飞船都放在屏幕底部的中央（仅准备属性，还没画）
         self.rect.midbottom = self.screen_rect.midbottom
     
     def blitme(self):
