@@ -4,6 +4,7 @@ import sys
 import pygame
 
 from settings import Settings
+from ship import Ship
 
 class AlienInvasion:
     """管理游戏资源和行为的类"""
@@ -14,7 +15,9 @@ class AlienInvasion:
         self.clock = pygame.time.Clock()
         self.settings = Settings()
         self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_heigh))
-        pygame.display.set_caption('Alien Invasion')
+        pygame.display.set_caption('外星人入侵')
+
+        self.ship = Ship(self)
     
     def run_game(self):
         """开始游戏的主循环"""
@@ -24,11 +27,16 @@ class AlienInvasion:
                 if event.type == pygame.QUIT:
                     sys.exit() 
             
+            #画飞船
             #self.screen.fill(self.settings.bg_color)
-            #让最近绘制的屏幕可见(后台翻前)
+            self.ship.blitme()
+
+            #后台翻前：将最近绘制的屏幕前置
             pygame.display.flip()
+
             #控制帧率：如果当前循环时间短于 1/60 秒，则延时至1/60秒
             self.clock.tick(60) 
+
 if __name__ == '__main__':
     #创建游戏实例并运行游戏
     ai = AlienInvasion()
