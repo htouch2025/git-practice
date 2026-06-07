@@ -14,7 +14,7 @@ class AlienInvasion:
         pygame.init()
         self.clock = pygame.time.Clock()
         self.settings = Settings()
-        self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_heigh))
+        self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption('外星人入侵')
         #实例化一个飞船
         self.ship = Ship(self)
@@ -23,6 +23,7 @@ class AlienInvasion:
         """开始游戏的主循环"""
         while True:
             self._check_events()
+            self.ship.update()
             self._update_screen()
             #控制帧率：如果当前循环时间短于 1/60 秒，则延时至1/60秒
             self.clock.tick(60) 
@@ -30,13 +31,33 @@ class AlienInvasion:
     def _check_events(self):
         """响应按键和鼠标事件"""
         for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit() 
+            if event.type == pygame.QUIT:
+                sys.exit() 
+            elif event.type == pygame.KEYDOWN:
+                self._check_keydown_events(event)
+            elif event.type == pygame.KEYUP:
+                self._check_keyup_events(event)                
+    
+    def _check_keydown_events(self, event):
+        """响应按下"""
+        if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
+            self.ship.moving_right = True
+        elif event.key == pygame.K_LEFT or event.key == pygame.K_a:
+            self.ship.moving_left = True
+        elif event.key == pygame.K_ESCAPE:
+            sys.exit()
+
+    def _check_keyup_events(self, event):
+        """响应释放"""
+        if event.key ==pygame.K_RIGHT or event.key ==pygame.K_d:
+            self.ship.moving_right = False
+        elif event.key ==pygame.K_LEFT or event.key ==pygame.K_a:
+            self.ship.moving_left = False
 
     def _update_screen(self):
         """更新屏幕上的图像，并切换到新屏幕（翻前）"""
 
-        #self.screen.fill(self.settings.bg_color)
+        self.screen.fill(self.settings.bg_color)
         #画上飞船
         self.ship.blitme()
 
