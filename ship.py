@@ -10,7 +10,7 @@ class Ship:
         self.screen_rect = self.screen.get_rect()
 
         #加载飞船图像并获取其外接矩形
-        self.image = pygame.image.load('images/ship01.png')
+        self.image = pygame.image.load('images/ship02.png')
         self.rect = self.image.get_rect()
 
         #每艘新飞船都放在屏幕底部的中央（仅准备属性，还没画）
