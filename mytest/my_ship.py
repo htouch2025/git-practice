@@ -3,7 +3,7 @@ from my_settings import Settings
 
 class Ship:
     def __init__(self,mai):
-        self.settings = Settings()
+        self.settings = mai.settings
         self.screen = mai.screen
         self.screen_rect = self.screen.get_rect()
 
@@ -16,9 +16,9 @@ class Ship:
         self.down_flag = False
 
     def update(self):
-        if self.up_flag == True and self.rect.top >= 0:
+        if self.up_flag and self.rect.top >= self.screen_rect.top:
             self.rect.y -= self.settings.ship_speed
-        elif self.down_flag == True and self.rect.bottom <= 800:
+        elif self.down_flag and self.rect.bottom <= self.screen_rect.bottom:
             self.rect.y += self.settings.ship_speed
 
     def blitme(self):
