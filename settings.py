@@ -9,6 +9,7 @@ class Settings:
         
         #飞船设置
         self.ship_speed = 5
+        self.ship_limit = 3
 
         #子弹设置
         self.bullet_speed = 5
@@ -16,3 +17,7 @@ class Settings:
         self.bullet_height = 15
         self.bullet_color = (255, 123, 0)
         self.bullets_allowed = 30
+
+        self.alien_speed = 5
+        self.fleet_drop_speed = 20
+        self.fleet_direction = 1    # 1为向右，-1 为向左移动

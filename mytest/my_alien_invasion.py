@@ -64,6 +64,8 @@ class MyAlienInvasion:
     def _update_bullets(self):
         self.bullets.update()
         
+        #.copy()利用浅拷贝机制，生成一个新的指针列表，供遍历之需，但指针指向原内存对象。
+        #拿到一个指针并做出判断后，调用原群组的方法，删除内存中的一个对象。
         for bullet in self.bullets.copy():
             if bullet.rect.left >= 1200:
                 self.bullets.remove(bullet)
